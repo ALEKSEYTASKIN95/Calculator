@@ -51,8 +51,8 @@ public class Main {
         Check check = new Check();
         if (check.checkRoman(s1) && check.checkRoman(s2)) {
             System.out.println(Main.roman(s1, s2, o));
-        } else {
+        } else if(check.checkArabian(s1)&&check.checkArabian(s2)) {
             System.out.println(Main.arab(s1, s2, o));
-        }
+        }else throw new NewException("НЕ ВЕРНЫЙ ВВОД ДАННЫХ!");
     }
 }
