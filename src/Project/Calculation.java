@@ -1,22 +1,23 @@
 package Project;
 
 public class Calculation {
-    public static int calculation(int num1, int num2, String operator) throws NewException {
-        switch (operator) {
+    public int calc(int num1, int num2, String oper) {
+
+        switch (oper) {
             case "+" -> {
                 return num1 + num2;
             }
             case "-" -> {
                 return num1 - num2;
             }
-            case "*" -> {
-                return num1 * num2;
-            }
             case "/" -> {
                 return num1 / num2;
             }
-            default -> throw new NewException("Вы ввели неправильное число");
+            case "*" -> {
+                return num1 * num2;
+            }
         }
+        return 0;
     }
 }
 

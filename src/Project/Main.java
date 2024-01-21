@@ -1,58 +1,66 @@
 package Project;
 
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) throws NewException {
-        Check check = new Check();
-        Scanner scanner = new Scanner(System.in);
-        String nume = scanner.nextLine();
-        String[] array = new String[3];
-        array = nume.split(" ");
-        if (array.length != 3) {
-            throw new NewException("Введите строку правильно");
-        } else if (!check.checkOperators(array[1])){
-         throw new NewException("Ведите правильный арифметический знак");
+    public static void main(String[] args) throws Exception {
+        while (true) {
+            Scanner scanner = new Scanner(System.in);
+            String expression = scanner.nextLine();
+            System.out.println(calc(expression));
         }
-            try {
-                isRoman(array[0], array[2], array[1]);
-            } catch (ArithmeticException e) {
-                System.out.println("Делить на ноль нельзя");
-            }
+
     }
 
-    public static int arab(String s1, String s2, String o) throws NewException {
-        int i1, i2;
-        int result = 0;
-        Check c = new Check();
-        return (c.checkArabian(s1) && c.checkArabian(s2) && c.checkOperators(o)) ?
-                (Calculation.calculation(Integer.parseInt(s1), Integer.parseInt(s2), o)) :
-                (0);
-    }
+    public static String calc(String input) throws Exception {
 
-    public static String roman(String s1, String s2, String o) throws NewException {
-        int i1, i2, result;
-        Check c = new Check();
-        if (c.checkRoman(s1) && c.checkRoman(s2) && c.checkOperators(o)) {
-            i1 = Convert.RomanToArabic(s1);
-            i2 = Convert.RomanToArabic(s2);
-            result = Calculation.calculation(i1, i2, o);
-            if (result < 0) {
-                throw new NewException("Отрицательное число");
-            }
-            return Convert.ArabicToRoman(result);
-        } else {
-            throw new NewException("Введено не правильное число");
-        }
-    }
-
-    public static void isRoman(String s1, String s2, String o) throws NewException {
         Check check = new Check();
-        if (check.checkRoman(s1) && check.checkRoman(s2)) {
-            System.out.println(Main.roman(s1, s2, o));
-        } else if(check.checkArabian(s1)&&check.checkArabian(s2)) {
-            System.out.println(Main.arab(s1, s2, o));
-        }else throw new NewException("НЕ ВЕРНЫЙ ВВОД ДАННЫХ!");
+        Convert convert = new Convert();
+        Calculation calculation = new Calculation();
+
+        String[] array = new String[2];
+        String[] action = {"+", "-", "/", "*"};
+        String[] regexAction = {"\\+", "-", "/", "\\*"};
+        int num1;
+        int num2;
+        String result = "";
+
+
+        int actionIndex = -1;
+        for (int i = 0; i < action.length; i++) {
+            if (input.contains(action[i])) {
+                actionIndex = i;
+                break;
+            }
+        }
+        if (actionIndex == -1) {
+            throw new Exception("Некорректное выражение");
+        }
+        array = input.split(regexAction[actionIndex]);
+        if (array.length != 2) throw new Exception("Должно быть два операнда");
+        try {
+            if (check.isRoman(array[0]) && check.isRoman(array[1])) {
+                num1 = convert.RomanToArabic(array[0]);
+                num2 = convert.RomanToArabic(array[1]);
+                int value = calculation.calc(num1, num2, action[actionIndex]);
+                if (value < 0) {
+                    throw new Exception("Римское число не может быть отрицатенльным");
+                }
+                result = convert.ArabicToRoman(value);
+                return result;
+            } else if (!check.isRoman(array[0]) && !check.isRoman(array[1])) {
+                num1 = Integer.parseInt(array[0]);
+                num2 = Integer.parseInt(array[1]);
+                int value = calculation.calc(num1, num2, action[actionIndex]);
+                result = Integer.toString(value);
+                return result;
+            } else throw new Exception("Числа должны быть в одном формате");
+        } catch (ArithmeticException e) {
+            System.out.println(e);
+        }
+        return result;
     }
 }
+
+
+

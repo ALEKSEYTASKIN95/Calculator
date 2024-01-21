@@ -1,8 +1,9 @@
 package Project;
 
 public class Convert {
-    public static String ArabicToRoman(int number) throws NewException {
+    public String ArabicToRoman(int number) {
         switch (number) {
+
             case 1 -> {
                 return "I";
             }
@@ -63,11 +64,12 @@ public class Convert {
             case 20 -> {
                 return "XX";
             }
-            default -> throw new NewException("Слишком большое число");
+
         }
+        return null;
     }
 
-    public static int RomanToArabic(String number) throws NewException {
+    public int RomanToArabic(String number) {
         switch (number) {
             case "I" -> {
                 return 1;
@@ -99,7 +101,8 @@ public class Convert {
             case "X" -> {
                 return 10;
             }
-            default -> throw new NewException("Неверный формат данных");
+
         }
+        return 0;
     }
 }
