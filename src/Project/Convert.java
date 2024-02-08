@@ -1,74 +1,18 @@
 package Project;
 
 public class Convert {
-    public String ArabicToRoman(int number) {
-        switch (number) {
+    static String[] romanArray = new String[]{"0", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI",
+            "XII", "XIII", "XIV", "XV", "XVI", "XVII", "XVIII", "XIX", "XX", "XXI", "XXII", "XXIII", "XXIV", "XXV", "XXVI",
+            "XXVII", "XXVIII", "XXIX", "XXX", "XXXI", "XXXII", "XXXIII", "XXXIV", "XXXV", "XXXVI", "XXXVII", "XXXVIII", "XXXIX",
+            "XL", "XLI", "XLII", "XLIII", "XLIV", "XLV", "XLVI", "XLVII", "XLVIII", "XLIX", "L", "LI", "LII", "LIII", "LIV", "LV", "LVI",
+            "LVII", "LVIII", "LIX", "LX", "LXI", "LXII", "LXIII", "LXIV", "LXV", "LXVI", "LXVII", "LXVIII", "LXIX", "LXX",
+            "LXXI", "LXXII", "LXXIII", "LXXIV", "LXXV", "LXXVI", "LXXVII", "LXXVIII", "LXXIX", "LXXX",
+            "LXXXI", "LXXXII", "LXXXIII", "LXXXIV", "LXXXV", "LXXXVI", "LXXXVII", "LXXXVIII", "LXXXIX", "XC",
+            "XCI", "XCII", "XCIII", "XCIV", "XCV", "XCVI", "XCVII", "XCVIII", "XCIX", "C"};
 
-            case 1 -> {
-                return "I";
-            }
-            case 2 -> {
-                return "II";
-            }
-            case 3 -> {
-                return "III";
-            }
-            case 4 -> {
-                return "IV";
-            }
-            case 5 -> {
-                return "V";
-            }
-            case 6 -> {
-                return "VI";
-            }
-            case 7 -> {
-                return "VII";
-            }
-            case 8 -> {
-                return "VIII";
-            }
-            case 9 -> {
-                return "IX";
-            }
-            case 10 -> {
-                return "X";
-            }
-            case 11 -> {
-                return "XI";
-            }
-            case 12 -> {
-                return "XII";
-            }
-            case 13 -> {
-                return "XIII";
-            }
-            case 14 -> {
-                return "XIV";
-            }
-            case 15 -> {
-                return "XV";
-            }
-            case 16 -> {
-                return "XVI";
-            }
-            case 17 -> {
-                return "XVII";
-            }
-            case 18 -> {
-                return "XVIII";
-            }
-            case 19 -> {
-                return "XIX";
-            }
-            case 20 -> {
-                return "XX";
-            }
-
-        }
-        return null;
+    public String arabicToRoman(int value) {
+        return romanArray[value];
     }
-
     public int RomanToArabic(String number) {
         switch (number) {
             case "I" -> {

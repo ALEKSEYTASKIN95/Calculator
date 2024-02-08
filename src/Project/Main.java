@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) throws Exception {
+   
         while (true) {
             Scanner scanner = new Scanner(System.in);
             String expression = scanner.nextLine();
@@ -25,7 +26,6 @@ public class Main {
         int num2;
         String result = "";
 
-
         int actionIndex = -1;
         for (int i = 0; i < action.length; i++) {
             if (input.contains(action[i])) {
@@ -46,11 +46,14 @@ public class Main {
                 if (value < 0) {
                     throw new Exception("Римское число не может быть отрицатенльным");
                 }
-                result = convert.ArabicToRoman(value);
+                result = convert.arabicToRoman(value);
                 return result;
             } else if (!check.isRoman(array[0]) && !check.isRoman(array[1])) {
                 num1 = Integer.parseInt(array[0]);
                 num2 = Integer.parseInt(array[1]);
+                if(num1>10||num2>10){
+                    throw new Exception("Введеные числа больше 10");
+                }
                 int value = calculation.calc(num1, num2, action[actionIndex]);
                 result = Integer.toString(value);
                 return result;
